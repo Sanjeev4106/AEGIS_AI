@@ -1,0 +1,513 @@
+/* ================================================================
+   AEGIS AI — Battlefield Acoustic Intelligence System
+   Tactical Dark Theme CSS
+   ================================================================ */
+
+/* ---- Google Fonts ---- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+/* ---- CSS Variables ---- */
+:root {
+    --bg-primary: #0E1117;
+    --bg-surface: #161B22;
+    --bg-panel: rgba(22, 27, 34, 0.75);
+    --bg-panel-solid: #1C2333;
+    --border-subtle: rgba(0, 245, 212, 0.12);
+    --border-active: rgba(0, 245, 212, 0.35);
+    --accent-cyan: #00F5D4;
+    --accent-cyan-dim: rgba(0, 245, 212, 0.15);
+    --accent-cyan-glow: rgba(0, 245, 212, 0.4);
+    --alert-red: #FF4C4C;
+    --alert-red-glow: rgba(255, 76, 76, 0.4);
+    --warning-yellow: #FFD60A;
+    --success-green: #38B000;
+    --text-primary: #E6EDF3;
+    --text-secondary: #8B949E;
+    --text-dim: #484F58;
+    --radius: 14px;
+    --glow-cyan: 0 0 15px rgba(0, 245, 212, 0.25), 0 0 30px rgba(0, 245, 212, 0.1);
+    --glow-red: 0 0 15px rgba(255, 76, 76, 0.3), 0 0 30px rgba(255, 76, 76, 0.12);
+    --glow-green: 0 0 12px rgba(56, 176, 0, 0.3);
+}
+
+/* ---- Global Reset ---- */
+.stApp {
+    background-color: var(--bg-primary) !important;
+    font-family: 'Inter', sans-serif !important;
+    color: var(--text-primary) !important;
+}
+
+/* ---- Radar Grid Background ---- */
+.stApp::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(0, 245, 212, 0.02) 0%, transparent 70%),
+        repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(0, 245, 212, 0.03) 59px, rgba(0, 245, 212, 0.03) 60px),
+        repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(0, 245, 212, 0.03) 59px, rgba(0, 245, 212, 0.03) 60px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ---- Hide Streamlit Branding ---- */
+#MainMenu { visibility: hidden; }
+footer { visibility: hidden; }
+header[data-testid="stHeader"] { background: transparent !important; }
+div[data-testid="stToolbar"] { display: none; }
+div[data-testid="stDecoration"] { display: none; }
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+/* ================================================================
+   HEADER
+   ================================================================ */
+.aegis-header {
+    text-align: center;
+    padding: 20px 0 15px 0;
+    position: relative;
+}
+
+.aegis-header h1 {
+    font-family: 'Rajdhani', sans-serif !important;
+    font-weight: 700;
+    font-size: 2.2rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    text-shadow: 0 0 20px rgba(0, 245, 212, 0.3), 0 0 40px rgba(0, 245, 212, 0.1);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.aegis-header .subtitle {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 300;
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+.aegis-header .header-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-top: 8px;
+    letter-spacing: 1px;
+}
+
+.header-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    margin: 10px auto 0 auto;
+    width: 80%;
+    opacity: 0.5;
+}
+
+/* ================================================================
+   GLASS PANELS
+   ================================================================ */
+.glass-panel {
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 12px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+    border-color: var(--border-active);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.glass-panel-active {
+    border-color: var(--border-active);
+    box-shadow: var(--glow-cyan);
+}
+
+.panel-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+/* ================================================================
+   SYSTEM STATUS INDICATORS
+   ================================================================ */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.status-standby {
+    background: rgba(139, 148, 158, 0.15);
+    border: 1px solid rgba(139, 148, 158, 0.3);
+    color: #8B949E;
+}
+
+.status-active {
+    background: rgba(56, 176, 0, 0.12);
+    border: 1px solid rgba(56, 176, 0, 0.35);
+    color: var(--success-green);
+    box-shadow: var(--glow-green);
+    animation: pulse-green 2s ease-in-out infinite;
+}
+
+.status-alert {
+    background: rgba(255, 76, 76, 0.12);
+    border: 1px solid rgba(255, 76, 76, 0.35);
+    color: var(--alert-red);
+    box-shadow: var(--glow-red);
+    animation: pulse-red 1s ease-in-out infinite;
+}
+
+/* ================================================================
+   THREAT METER
+   ================================================================ */
+.threat-meter-container {
+    background: var(--bg-surface);
+    border-radius: 10px;
+    padding: 14px;
+    border: 1px solid var(--border-subtle);
+}
+
+.threat-bar-bg {
+    width: 100%;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 11px;
+    overflow: hidden;
+    position: relative;
+}
+
+.threat-bar-fill {
+    height: 100%;
+    border-radius: 11px;
+    transition: width 0.6s ease, background 0.6s ease;
+    position: relative;
+}
+
+.threat-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+.threat-low { background: linear-gradient(90deg, #38B000, #4CC900); }
+.threat-medium { background: linear-gradient(90deg, #FFD60A, #FFA500); }
+.threat-high {
+    background: linear-gradient(90deg, #FF4C4C, #FF1A1A);
+    box-shadow: 0 0 15px rgba(255, 76, 76, 0.4);
+}
+
+.threat-value {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+    text-align: center;
+    margin-top: 6px;
+    line-height: 1;
+}
+
+/* ================================================================
+   ALERT BANNER
+   ================================================================ */
+.alert-banner {
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    transition: all 0.4s ease;
+}
+
+.alert-stable {
+    background: rgba(56, 176, 0, 0.08);
+    border: 1px solid rgba(56, 176, 0, 0.25);
+    color: var(--success-green);
+}
+
+.alert-moderate {
+    background: rgba(255, 214, 10, 0.08);
+    border: 1px solid rgba(255, 214, 10, 0.25);
+    color: var(--warning-yellow);
+    animation: pulse-yellow 2s ease-in-out infinite;
+}
+
+.alert-high {
+    background: rgba(255, 76, 76, 0.1);
+    border: 1px solid rgba(255, 76, 76, 0.35);
+    color: var(--alert-red);
+    box-shadow: var(--glow-red);
+    animation: pulse-red 1.2s ease-in-out infinite;
+}
+
+/* ================================================================
+   SEVERITY BADGES
+   ================================================================ */
+.severity-badge {
+    display: inline-block;
+    padding: 4px 16px;
+    border-radius: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.severity-low {
+    background: rgba(56, 176, 0, 0.12);
+    border: 1px solid rgba(56, 176, 0, 0.3);
+    color: var(--success-green);
+}
+
+.severity-medium {
+    background: rgba(255, 214, 10, 0.12);
+    border: 1px solid rgba(255, 214, 10, 0.3);
+    color: var(--warning-yellow);
+}
+
+.severity-high {
+    background: rgba(255, 76, 76, 0.12);
+    border: 1px solid rgba(255, 76, 76, 0.35);
+    color: var(--alert-red);
+    animation: pulse-red 1.5s ease-in-out infinite;
+}
+
+.severity-critical {
+    background: rgba(255, 76, 76, 0.2);
+    border: 1px solid rgba(255, 76, 76, 0.5);
+    color: #FF1A1A;
+    box-shadow: var(--glow-red);
+    animation: pulse-red 0.8s ease-in-out infinite;
+}
+
+/* ================================================================
+   EVENT LOG
+   ================================================================ */
+.event-log-container {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    line-height: 1.7;
+    max-height: 180px;
+    overflow-y: auto;
+    color: var(--text-secondary);
+}
+
+.log-entry-info { color: var(--accent-cyan); }
+.log-entry-warn { color: var(--warning-yellow); }
+.log-entry-alert { color: var(--alert-red); }
+.log-entry-success { color: var(--success-green); }
+.log-entry-dim { color: var(--text-dim); }
+
+/* ================================================================
+   INTEL CARDS
+   ================================================================ */
+.intel-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.intel-card:hover {
+    border-color: var(--border-active);
+}
+
+.intel-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+}
+
+.intel-value {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.intel-value-cyan {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 10px rgba(0, 245, 212, 0.2);
+}
+
+/* ================================================================
+   COMPASS
+   ================================================================ */
+.compass-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+/* ================================================================
+   CALIBRATION METER
+   ================================================================ */
+.calibration-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 6px;
+}
+
+.calibration-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-cyan), rgba(0, 245, 212, 0.6));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+/* ================================================================
+   STREAMLIT OVERRIDES
+   ================================================================ */
+
+/* Sidebar-like controls styling */
+div[data-testid="stVerticalBlock"] > div {
+    gap: 0.5rem;
+}
+
+/* Toggle styling */
+div[data-testid="stToggle"] label {
+    font-family: 'Space Grotesk', sans-serif !important;
+    color: var(--text-secondary) !important;
+    font-size: 0.82rem !important;
+}
+
+/* Slider styling */
+div[data-testid="stSlider"] label {
+    font-family: 'Space Grotesk', sans-serif !important;
+    color: var(--text-secondary) !important;
+    font-size: 0.82rem !important;
+}
+
+div[data-testid="stSlider"] div[data-testid="stThumbValue"] {
+    font-family: 'JetBrains Mono', monospace !important;
+    color: var(--accent-cyan) !important;
+}
+
+/* Selectbox styling */
+div[data-testid="stSelectbox"] label {
+    font-family: 'Space Grotesk', sans-serif !important;
+    color: var(--text-secondary) !important;
+    font-size: 0.82rem !important;
+}
+
+div[data-testid="stSelectbox"] > div > div {
+    background-color: var(--bg-surface) !important;
+    border-color: var(--border-subtle) !important;
+    color: var(--text-primary) !important;
+    border-radius: 8px !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+}
+
+/* Metric styling */
+div[data-testid="stMetric"] {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+div[data-testid="stMetric"] label {
+    font-family: 'Space Grotesk', sans-serif !important;
+    color: var(--text-dim) !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+}
+
+div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
+    font-family: 'Rajdhani', sans-serif !important;
+    color: var(--accent-cyan) !important;
+    font-weight: 700 !important;
+}
+
+/* ================================================================
+   ANIMATIONS
+   ================================================================ */
+@keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 8px rgba(56, 176, 0, 0.2); }
+    50% { box-shadow: 0 0 18px rgba(56, 176, 0, 0.4); }
+}
+
+@keyframes pulse-red {
+    0%, 100% { box-shadow: 0 0 8px rgba(255, 76, 76, 0.2); }
+    50% { box-shadow: 0 0 22px rgba(255, 76, 76, 0.5); }
+}
+
+@keyframes pulse-yellow {
+    0%, 100% { box-shadow: 0 0 6px rgba(255, 214, 10, 0.15); }
+    50% { box-shadow: 0 0 16px rgba(255, 214, 10, 0.3); }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes scan-line {
+    0% { top: -2px; }
+    100% { top: 100%; }
+}
+
+/* Scan line effect for hero panel */
+.scan-line-overlay {
+    position: relative;
+    overflow: hidden;
+}
+
+.scan-line-overlay::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    opacity: 0.15;
+    animation: scan-line 4s linear infinite;
+    pointer-events: none;
+}

@@ -1,0 +1,19 @@
+# Virtual environments
+.venv/
+.venv311/
+tensorflow_env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
